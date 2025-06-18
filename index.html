@@ -54,7 +54,8 @@
           })
         .then(async (response) => {
           const data = await response.json();
-          console.log(data.accessToken);
+          // console.log(data.accessToken);
+          // return;
 
           if (!response.ok) {
             document.getElementById("errorMessage").style.display = "block";

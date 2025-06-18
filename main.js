@@ -14,16 +14,15 @@ function getTokenFromCookies() {
 window.onload = async function () {
   try {
     const token = getTokenFromCookies();
-    const response = await fetch(
-      "http://localhost:3000/api/v1/product/get-products",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-          const products = await response.json();
+    console.log("Token:", token);
+    
+    const response = await fetch("http://localhost:3000/api/v1/product", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+     const products = await response.json();
 
     const productsRow = document.getElementById("products-row");
     productsRow.innerHTML = ""; // Clear existing
@@ -40,7 +39,7 @@ window.onload = async function () {
       card.innerHTML = `
       <div class="card" style="width: 18rem;">
         <img src="${
-          product.images[0] || "https://via.placeholder.com/150"
+          "https://isystem.jo/wp-content/uploads/iPhone_15_Plus_Black_PDP_Image_Position-1__en-ME.webp"
         }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${product.title}</h5>
