@@ -45,7 +45,7 @@
           const email = document.getElementById("username").value;
           const password = document.getElementById("password").value;
 
-          fetch("http://localhost:3000/api/v1/users/sign-in", {
+          fetch("https://store-nestjs-npm.vercel.app/users/sign-in", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

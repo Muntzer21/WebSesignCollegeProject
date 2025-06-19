@@ -16,12 +16,15 @@ window.onload = async function () {
     const token = getTokenFromCookies();
     console.log("Token:", token);
     
-    const response = await fetch("http://localhost:3000/api/v1/product", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://store-nestjs-npm.vercel.app/product",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtb255QGdtYWlsLmNvbSIsImlhdCI6MTc1MDI5OTc3MSwiZXhwIjoxNzUwMzg2MTcxfQ.2fuA-cZ19c0_SjfrIN8YAIv0mltUAbPTLzNUxew2ot0`,
+        },
+      }
+    );
      const products = await response.json();
 
     const productsRow = document.getElementById("products-row");
@@ -151,7 +154,7 @@ async function buyOrder(event) {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api/v1/order", {
+    const response = await fetch("https://store-nestjs-npm.vercel.app/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -166,11 +169,13 @@ async function buyOrder(event) {
           state: "test",
           country: "iraq",
         },
-        orderedProducts: [{
-         id: orderProducts[0].product_id,
-          product_quantity: orderProducts[0].product_quantity,
-          product_unit_price: orderProducts[0].product_unit_price
-        }],
+        orderedProducts: [
+          {
+            id: orderProducts[0].product_id,
+            product_quantity: orderProducts[0].product_quantity,
+            product_unit_price: orderProducts[0].product_unit_price,
+          },
+        ],
       }),
     });
     console.log(response);
